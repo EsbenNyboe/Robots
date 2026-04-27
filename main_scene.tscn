@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://e4vsonlatkxp"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_o3jxj"]
+
+[node name="MainScene" type="Node2D" unique_id=1565256235]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1826946759]
+scale = Vector2(43.575, 43.575)
+texture = SubResource("CanvasTexture_o3jxj")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1553161439]
