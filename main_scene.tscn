@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://e4vsonlatkxp"]
 
-[ext_resource type="Script" uid="uid://cdjhnad7mju5i" path="res://GridManagerTest.cs" id="3_gyfs4"]
+[ext_resource type="Script" uid="uid://dep02feo0rmah" path="res://GridManager.cs" id="1_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://bcffsm5ahm8x6" path="res://belt.tscn" id="3_d5x1h"]
 [ext_resource type="PackedScene" uid="uid://pxeybomkornp" path="res://grid_cell.tscn" id="4_d5x1h"]
 
 [node name="MainScene" type="Node2D" unique_id=1565256235]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1553161439]
 
-[node name="GridManagerTest" type="Node2D" parent="." unique_id=1782851980]
-script = ExtResource("3_gyfs4")
-_cellSize = 24
-_gridScene = ExtResource("4_d5x1h")
+[node name="GridManager" type="Node2D" parent="." unique_id=1782851980]
+script = ExtResource("1_gyfs4")
+_gridCellScene = ExtResource("4_d5x1h")
+_beltScene = ExtResource("3_d5x1h")
+_cellSize = 108

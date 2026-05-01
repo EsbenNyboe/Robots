@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bcffsm5ahm8x6"]
+
+[ext_resource type="Script" uid="uid://d3mvneoe2qg0u" path="res://GridCell.cs" id="1_dy5sx"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0rlrg"]
+
+[node name="GridCell" type="Node2D" unique_id=356938084]
+script = ExtResource("1_dy5sx")
+
+[node name="Item" type="Sprite2D" parent="." unique_id=922735256]
+texture = SubResource("CanvasTexture_0rlrg")
+
+[node name="Belt" type="Sprite2D" parent="." unique_id=294766653]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.76, 0.76)
+texture = SubResource("CanvasTexture_0rlrg")

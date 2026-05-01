@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://pxeybomkornp"]
 
 [ext_resource type="Script" uid="uid://d3mvneoe2qg0u" path="res://GridCell.cs" id="1_024bi"]
-[ext_resource type="Script" uid="uid://1ll77lo8jey4" path="res://Belt.cs" id="2_jveu0"]
-[ext_resource type="Script" uid="uid://y8nmw1gc33jn" path="res://Item.cs" id="3_iusfv"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0rlrg"]
 
@@ -12,9 +10,7 @@ script = ExtResource("1_024bi")
 [node name="Belt" type="Sprite2D" parent="." unique_id=294766653]
 modulate = Color(0, 0, 0, 1)
 texture = SubResource("CanvasTexture_0rlrg")
-script = ExtResource("2_jveu0")
 
 [node name="Item" type="Sprite2D" parent="." unique_id=922735256]
 scale = Vector2(0.76, 0.76)
 texture = SubResource("CanvasTexture_0rlrg")
-script = ExtResource("3_iusfv")
