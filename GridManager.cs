@@ -31,7 +31,20 @@ public partial class GridManager : Node2D
             SetGridCell(_beltScene, 0, 0);
         }
     }
-
+    
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+        if (@event is InputEventMouseButton mouseButton)
+        {
+            if (!mouseButton.Pressed)
+            {
+                var mousePosition = GetViewport().GetCamera2D().GetGlobalMousePosition();
+                SpawnCellAtPosition(mousePosition);
+            }
+        }
+    }
+    
     private void RebuildGrid()
     {
         if (_grid != null)
@@ -57,11 +70,28 @@ public partial class GridManager : Node2D
         }
     }
 
-    public void SetGridCell(PackedScene gridCellScene, int x, int y)
+    private void SpawnCellAtPosition(Vector2 mouseButtonPosition)
     {
-        _grid[y][x].QueueFree();
+        var (x, y) = GetCellCoordinatesFromPosition(mouseButtonPosition);
+        if (x < 0 || x >= _width || y < 0 || y >= _height)
+        {
+            return;
+        }
+        SetGridCell(_beltScene, x, y);
+    }
+
+    private (int x, int y) GetCellCoordinatesFromPosition(Vector2 mouseButtonPosition)
+    {
+        var correctedX = mouseButtonPosition.X + (_cellSize * 0.5f);
+        var correctedY = mouseButtonPosition.Y + (_cellSize * 0.5f);
+        return ((int)correctedX / _cellSize, (int)correctedY / _cellSize);
+    }
+
+    private void SetGridCell(PackedScene gridCellScene, int x, int y)
+    {
+        _grid[x][y].QueueFree();
         var gridCell = InstantiateGridCell(gridCellScene, x, y);
-        _grid[y][x] = gridCell;
+        _grid[x][y] = gridCell;
     }
     
     private GridCell InstantiateGridCell(PackedScene gridCellScene, int x, int y)

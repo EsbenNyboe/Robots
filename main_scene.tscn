@@ -12,4 +12,4 @@
 script = ExtResource("1_gyfs4")
 _gridCellScene = ExtResource("4_d5x1h")
 _beltScene = ExtResource("3_d5x1h")
-_cellSize = 108
+_cellSize = 40
