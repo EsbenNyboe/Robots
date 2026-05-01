@@ -1,57 +1,13 @@
 [gd_scene format=3 uid="uid://e4vsonlatkxp"]
 
-[ext_resource type="Script" uid="uid://y8nmw1gc33jn" path="res://Item.cs" id="1_2c62f"]
-[ext_resource type="Script" uid="uid://1ll77lo8jey4" path="res://Belt.cs" id="2_gyfs4"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_o3jxj"]
+[ext_resource type="Script" uid="uid://cdjhnad7mju5i" path="res://GridManagerTest.cs" id="3_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://pxeybomkornp" path="res://grid_cell.tscn" id="4_d5x1h"]
 
 [node name="MainScene" type="Node2D" unique_id=1565256235]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1553161439]
 
-[node name="Belt" type="Sprite2D" parent="." unique_id=701058133]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(2, 72)
-scale = Vector2(43.575, 43.575)
-texture = SubResource("CanvasTexture_o3jxj")
-script = ExtResource("2_gyfs4")
-
-[node name="Belt2" type="Sprite2D" parent="." unique_id=1475764798 node_paths=PackedStringArray("_input", "_output", "_item")]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(50, 72)
-scale = Vector2(43.575, 43.575)
-texture = SubResource("CanvasTexture_o3jxj")
-script = ExtResource("2_gyfs4")
-_input = NodePath("../Belt")
-_output = NodePath("../Belt3")
-_item = NodePath("../Item")
-
-[node name="Belt3" type="Sprite2D" parent="." unique_id=1717164337 node_paths=PackedStringArray("_input", "_output")]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(99, 72)
-scale = Vector2(43.575, 43.575)
-texture = SubResource("CanvasTexture_o3jxj")
-script = ExtResource("2_gyfs4")
-_input = NodePath("../Belt2")
-_output = NodePath("../Belt4")
-
-[node name="Belt4" type="Sprite2D" parent="." unique_id=378349589 node_paths=PackedStringArray("_input", "_output")]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(97.787506, 22.7875)
-scale = Vector2(43.575, 43.575)
-texture = SubResource("CanvasTexture_o3jxj")
-script = ExtResource("2_gyfs4")
-_input = NodePath("../Belt3")
-_output = NodePath("../Belt5")
-
-[node name="Belt5" type="Sprite2D" parent="." unique_id=1173158407]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(151, 37)
-scale = Vector2(43.575, 43.575)
-texture = SubResource("CanvasTexture_o3jxj")
-script = ExtResource("2_gyfs4")
-
-[node name="Item" type="Sprite2D" parent="." unique_id=1826946759]
-scale = Vector2(43.575, 43.575)
-texture = SubResource("CanvasTexture_o3jxj")
-script = ExtResource("1_2c62f")
+[node name="GridManagerTest" type="Node2D" parent="." unique_id=1782851980]
+script = ExtResource("3_gyfs4")
+_cellSize = 24
+_gridScene = ExtResource("4_d5x1h")
