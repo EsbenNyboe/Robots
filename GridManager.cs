@@ -7,6 +7,7 @@ public partial class GridManager : Node2D
 {
     [Export] private PackedScene _gridCellScene;
     [Export] private PackedScene _beltScene;
+    [Export] private PackedScene _robotScene;
     [Export] private int _width = 10;
     [Export] private int _height = 10;
     [Export] private int _cellSize = 1;
@@ -14,6 +15,8 @@ public partial class GridManager : Node2D
     private List<List<GridCell>> _grid;
 
     private SpawnType _currentSpawnType;
+
+    public static Action<Vector2> OnOrderUnitsToPosition;
 
     public override void _EnterTree()
     {
@@ -46,6 +49,7 @@ public partial class GridManager : Node2D
                         SetCellAtPosition(mousePosition, _beltScene);
                         break;
                     case SpawnType.Robot:
+                        SpawnUnitAtPosition(mousePosition, _robotScene);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -62,6 +66,7 @@ public partial class GridManager : Node2D
                         SetCellAtPosition(mousePosition, _gridCellScene);
                         break;
                     case SpawnType.Robot:
+                        OrderUnitsToPosition(mousePosition);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -74,7 +79,7 @@ public partial class GridManager : Node2D
     {
         _currentSpawnType = spawnType;
     }
-    
+
     private void RebuildGrid()
     {
         if (_grid != null)
@@ -98,6 +103,18 @@ public partial class GridManager : Node2D
                 _grid[x].Add(gridCell);
             }
         }
+    }
+
+    private void SpawnUnitAtPosition(Vector2 mousePosition, PackedScene unitScene)
+    {
+        var robot = unitScene.Instantiate<Robot>();
+        robot.Position = mousePosition;
+        AddChild(robot);
+    }
+
+    private void OrderUnitsToPosition(Vector2 mousePosition)
+    {
+        OnOrderUnitsToPosition?.Invoke(mousePosition);
     }
 
     private void SetCellAtPosition(Vector2 mouseButtonPosition, PackedScene cellScene)

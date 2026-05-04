@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bcffsm5ahm8x6" path="res://belt.tscn" id="3_d5x1h"]
 [ext_resource type="Script" uid="uid://i0kyytxeupvj" path="res://Ui.cs" id="4_8mm7a"]
 [ext_resource type="PackedScene" uid="uid://pxeybomkornp" path="res://grid_cell.tscn" id="4_d5x1h"]
+[ext_resource type="PackedScene" uid="uid://cndxkft06i84a" path="res://robot.tscn" id="5_8mm7a"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_gyfs4"]
 
@@ -15,6 +16,7 @@
 script = ExtResource("1_gyfs4")
 _gridCellScene = ExtResource("4_d5x1h")
 _beltScene = ExtResource("3_d5x1h")
+_robotScene = ExtResource("5_8mm7a")
 _cellSize = 40
 
 [node name="UI" type="MarginContainer" parent="." unique_id=1194817294 node_paths=PackedStringArray("_spawnTileButton", "_spawnRobotButton", "_gridManager")]
