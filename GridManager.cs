@@ -25,11 +25,6 @@ public partial class GridManager : Node2D
         {
             RebuildGrid();
         }
-
-        if (Input.IsActionJustPressed("ui_down"))
-        {
-            SetGridCell(_beltScene, 0, 0);
-        }
     }
     
     public override void _Input(InputEvent @event)
@@ -37,10 +32,15 @@ public partial class GridManager : Node2D
         base._Input(@event);
         if (@event is InputEventMouseButton mouseButton)
         {
-            if (!mouseButton.Pressed)
+            var mousePosition = GetViewport().GetCamera2D().GetGlobalMousePosition();
+            if (mouseButton.ButtonIndex == MouseButton.Left && !mouseButton.Pressed)
             {
-                var mousePosition = GetViewport().GetCamera2D().GetGlobalMousePosition();
-                SpawnCellAtPosition(mousePosition);
+                SetCellAtPosition(mousePosition, _beltScene);
+            }
+
+            if (mouseButton.ButtonIndex == MouseButton.Right && !mouseButton.Pressed)
+            {
+                SetCellAtPosition(mousePosition, _gridCellScene);
             }
         }
     }
@@ -70,14 +70,14 @@ public partial class GridManager : Node2D
         }
     }
 
-    private void SpawnCellAtPosition(Vector2 mouseButtonPosition)
+    private void SetCellAtPosition(Vector2 mouseButtonPosition, PackedScene cellScene)
     {
         var (x, y) = GetCellCoordinatesFromPosition(mouseButtonPosition);
         if (x < 0 || x >= _width || y < 0 || y >= _height)
         {
             return;
         }
-        SetGridCell(_beltScene, x, y);
+        SetGridCell(cellScene, x, y);
     }
 
     private (int x, int y) GetCellCoordinatesFromPosition(Vector2 mouseButtonPosition)
