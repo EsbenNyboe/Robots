@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 using Robots;
@@ -11,6 +12,8 @@ public partial class GridManager : Node2D
     [Export] private int _cellSize = 1;
 
     private List<List<GridCell>> _grid;
+
+    private SpawnType _currentSpawnType;
 
     public override void _EnterTree()
     {
@@ -35,14 +38,41 @@ public partial class GridManager : Node2D
             var mousePosition = GetViewport().GetCamera2D().GetGlobalMousePosition();
             if (mouseButton.ButtonIndex == MouseButton.Left && !mouseButton.Pressed)
             {
-                SetCellAtPosition(mousePosition, _beltScene);
+                switch (_currentSpawnType)
+                {
+                    case SpawnType.None:
+                        break;
+                    case SpawnType.Tile:
+                        SetCellAtPosition(mousePosition, _beltScene);
+                        break;
+                    case SpawnType.Robot:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
 
             if (mouseButton.ButtonIndex == MouseButton.Right && !mouseButton.Pressed)
             {
-                SetCellAtPosition(mousePosition, _gridCellScene);
+                switch (_currentSpawnType)
+                {
+                    case SpawnType.None:
+                        break;
+                    case SpawnType.Tile:
+                        SetCellAtPosition(mousePosition, _gridCellScene);
+                        break;
+                    case SpawnType.Robot:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
+    }
+
+    public void SetSpawnType(SpawnType spawnType)
+    {
+        _currentSpawnType = spawnType;
     }
     
     private void RebuildGrid()
@@ -104,4 +134,11 @@ public partial class GridManager : Node2D
         AddChild(gridCell);
         return gridCell;
     }
+}
+
+public enum SpawnType
+{
+    None,
+    Tile,
+    Robot
 }
