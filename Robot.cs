@@ -58,6 +58,7 @@ public partial class Robot : AnimatedSprite2D
                 var direction = diff.Normalized();
                 var velocity = direction * _speed * (float)delta;
                 Position += velocity;
+                FlipH = direction.X > 0;
                 
                 if (Position.DistanceTo(_target) < 1)
                 {
